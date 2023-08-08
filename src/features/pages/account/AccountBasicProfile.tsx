@@ -9,7 +9,7 @@ const AccountBasicProfile = () => {
   const [updateAccount, { isLoading: isLoadingUpdateAccount }] = useUpdateAccountMutation()
 
   const handleSubmitBasicProfileForm = useCallback(
-    (formData: BasicProfileFormData) => {
+    async (formData: BasicProfileFormData) => {
       const { email, username, firstName, lastName, phone } = formData
 
       updateAccount({

@@ -21,7 +21,7 @@ export const accountApi = createApi({
     }),
 
     updateAccount: builder.mutation<void, UpdateAccountReqPayload>({
-      query: (body) => {
+      query: (body) => {        
         return {
           url: `/500`,
           method: 'POST',
@@ -36,7 +36,13 @@ export const accountApi = createApi({
       },
       invalidatesTags: ['Account'],
 
-      async onQueryStarted(_args, { queryFulfilled }) {
+      async onQueryStarted(_args, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          accountApi.util.updateQueryData('getAccount', undefined, (draft) => {
+            Object.assign(draft, _args)
+          })
+        )
+        queryFulfilled.catch(patchResult.undo)
         handleOnQueryStartedWithToast(queryFulfilled, { action: 'update' })
       },
     }),

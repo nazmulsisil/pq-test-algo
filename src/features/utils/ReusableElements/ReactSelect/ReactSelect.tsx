@@ -7,6 +7,7 @@ export const SelectLoading = () => <Spinner className="my-5" />
 export const selectCustomStyles: StylesConfig<SelectOption, false, GroupBase<SelectOption>> = {
   control: (styles) => ({
     ...styles,
+    // backgroundColor: "#0f2642",
     border: 'none!important',
     boxShadow: 'none!important',
     minHeight: '33px',
@@ -52,6 +53,29 @@ export const selectThemeConfig: ThemeConfig = (theme) => ({
     primary25: 'var(--react-select-primary25)',
     danger: 'var(--react-select-danger)',
     neutral0: 'var(--react-select-neutral0)',
+    neutral5: 'var(--react-select-neutral5)',
+    neutral10: 'var(--react-select-neutral10)',
+    neutral20: 'var(--react-select-neutral20)',
+    neutral30: 'var(--react-select-neutral30)',
+    neutral40: 'var(--react-select-neutral40)',
+    neutral50: 'var(--react-select-neutral50)',
+    neutral60: 'var(--react-select-neutral60)',
+    neutral70: 'var(--react-select-neutral70)',
+    neutral80: 'var(--react-select-neutral80)',
+    neutral90: 'var(--react-select-neutral90)',
+  },
+})
+
+export const selectDarkThemeConfig: ThemeConfig = (theme) => ({
+  ...theme,
+  colors: {
+    ...theme.colors,
+    primary: 'var(--react-select-primary)',
+    primary75: 'var(--react-select-primary75)',
+    primary50: 'var(--react-select-primary50)',
+    primary25: 'var(--react-select-primary25)',
+    danger: 'var(--react-select-danger)',
+    neutral0: '#0f2642',
     neutral5: 'var(--react-select-neutral5)',
     neutral10: 'var(--react-select-neutral10)',
     neutral20: 'var(--react-select-neutral20)',

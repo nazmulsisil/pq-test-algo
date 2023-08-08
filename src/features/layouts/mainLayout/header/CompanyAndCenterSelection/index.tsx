@@ -5,11 +5,13 @@ import { selectCenter, selectCompany, setCenter, setCompany } from './companyAnd
 import { useAppDispatch, useAppSelector } from 'src/app/hooks'
 import {
   selectCustomStyles,
+  selectDarkThemeConfig,
   SelectLoading,
   selectThemeConfig,
 } from 'src/features/utils/ReusableElements/ReactSelect/ReactSelect'
 import { SelectOption } from 'src/features/types'
 import { useUser } from 'src/features/services/api/authApi/useUser'
+import { RootState } from 'src/app/store'
 
 function CompanyAndCenterSelection() {
   const dispatch = useAppDispatch()
@@ -21,6 +23,9 @@ function CompanyAndCenterSelection() {
   const selectedCenterId = selectedCenter?.id
   const selectedCenterName = selectedCenter?.name
 
+  const isLightTheme = useAppSelector((state: RootState) => state.themeCustomizer.mixLayout)
+  const themeConfig = isLightTheme ? selectThemeConfig : selectDarkThemeConfig;
+  
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const companies: any[] = []
   const isFetchingCompanies = false
@@ -169,7 +174,7 @@ function CompanyAndCenterSelection() {
           <div className="me-3 mb-2 mb-sm-0" style={dropdownStyle}>
             <Select
               styles={selectCustomStyles as any}
-              theme={selectThemeConfig}
+              theme={themeConfig}
               loadingMessage={SelectLoading}
               isLoading={isFetchingCompanies}
               className="form-control p-0"
@@ -189,7 +194,7 @@ function CompanyAndCenterSelection() {
           <div style={dropdownStyle}>
             <Select
               styles={selectCustomStyles}
-              theme={selectThemeConfig}
+              theme={themeConfig}
               loadingMessage={SelectLoading}
               isLoading={isFetchingCenters}
               className="form-control p-0"
